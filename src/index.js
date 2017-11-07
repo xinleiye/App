@@ -1,3 +1,4 @@
+"use strict"
 // 引入Vue官方及开源组件库类
 import Vue from "vue";
 import VueRouter from "vue-router";
@@ -8,6 +9,7 @@ import "element-ui/lib/index.js"
 
 // 引入自己的组件库类
 import App from "./App";
+import store from "./store/store"
 import Login from "./component/Login/Login";
 import Student from "./component/Student/Student";
 import Teacher from "./component/Teacher/Teacher";
@@ -22,14 +24,29 @@ Vue.config.productionTip = false;
 
 const routes = [
     { path: "/", component: Login },
-    { path: "/student", component: Student },
-    { path: "/teacher", component: Teacher },
-    { path: "/manager", component: Manager }
+    { path: "/student", component: Student, meta: { requireAuth: true } },
+    { path: "/teacher", component: Teacher, meta: { requireAuth: true } },
+    { path: "/manager", component: Manager, meta: { requireAuth: true } }
 ]
 
 const router = new VueRouter({
     routes,
 });
+
+router.beforeEach((to, from, next) => {
+    if (to.meta.requireAuth) {
+        if (isEmptyObject(StorageEvent.state.user)) {
+            next();
+        } else {
+            next({
+                path: "/student",
+                query: {redirect: to.fullPath}
+            });
+        }
+    } else {
+        next();
+    }
+})
 
 const app = new Vue({
     router,

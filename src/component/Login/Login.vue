@@ -65,7 +65,7 @@
                     alert("管理员");
                     return;
                 }
-                if(this.username === this.teUsername && vpassword === this.tePassword) {
+                if(this.username === this.teUsername && this.password === this.tePassword) {
                     alert("老师");
                     return;
                 }
