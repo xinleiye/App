@@ -1,9 +1,11 @@
+"use strict"
+
 const path = require("path");
 const webpack = require("webpack");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-
-module.exports = {
+//const vueLoaderConfig = require("")
+const webpackConfig = module.exports = {
     entry: {
         app: "./src/index.js"
     },
@@ -11,7 +13,9 @@ module.exports = {
         new CleanWebpackPlugin(["dist"]),
         new HtmlWebpackPlugin({
             title: "App",
-            template: "./index.html"
+            filename: "index.html",
+            template: "./index.html",
+            inject: true
         }),
         new webpack.NamedModulesPlugin(),
         new webpack.HotModuleReplacementPlugin(),
@@ -30,20 +34,27 @@ module.exports = {
         rules: [
             {
                 test: /\.vue$/,
-                loader: "vue-loader"
+                loader: "vue-loader",
+                //options: vueLoaderConfig
             },
             {
-                test: /\.css/,
-                use: [
+                test: /\.js$/,
+                loader: "babel-loader",
+            },
+            {
+                test: /\.css$/,
+                loader: [
                     "style-loader",
                     "css-loader"
                 ]
             },
             {
-                test: /\.(png|svg|jpg|gif)$/,
-                use: [
-                    "file-loader"
-                ]
+                test: /\.(png|jpe?g|git|svg)$/,
+                loader: "url-loader",
+                options: {
+                    limit: 1000,
+                    //name: utils.assetsPath("img/[name].[hash:7].[ext]")
+                }
             },
             {
                 test: /\.(woff|woff2|eot|ttf|otf)$/,

@@ -1,21 +1,33 @@
 <template>
-    <el-container class="container">
-        <el-header class="title">学生综合素质评价</el-header>
-        <el-main>
-            <Login></Login>
-        </el-main>
-        <el-footer class="foot">版权所有</el-footer>
-    </el-container>
+    <div>
+        <component :is="current"></component>
+    </div>
 </template>
 <script>
+    import Store from "./store/store"
     import Login from "./component/Login/Login";
+    import Student from "./component/Student/Student";
+    import Teacher from "./component/Teacher/Teacher";
+    import Manager from "./component/Manager/Manager";
+
     export default {
         name: "app",
         data: function() {
-            return {visible: false}
+            return {
+                current: "",
+                Store,
+            }
         },
-        components: {
-            Login,
+        created() {
+            if (Store.status === 1) {
+                this.current = Student;
+            } else if (Store.status === 2) {
+                this.current = Teacher;
+            } else if (Store.status === 3) {
+                this.current = Manager;
+            } else {
+                this.current = Login;
+            }
         }
     }
 </script>

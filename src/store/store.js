@@ -6,7 +6,8 @@ import Vuex from "vuex";
 Vue.use(Vuex);
 
 const state = {
-    user: {}
+    user: "",
+    status: 0
 };
 
 const mutations = {
