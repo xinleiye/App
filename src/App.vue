@@ -1,33 +1,14 @@
 <template>
     <div>
-        <component :is="current"></component>
+        <Login></Login>
     </div>
 </template>
 <script>
-    import Store from "./store/store"
-    import Login from "./component/Login/Login";
-    import Student from "./component/Student/Student";
-    import Teacher from "./component/Teacher/Teacher";
-    import Manager from "./component/Manager/Manager";
-
+    import Login from "./component/Login/Login"
     export default {
         name: "app",
-        data: function() {
-            return {
-                current: "",
-                Store,
-            }
-        },
-        created() {
-            if (Store.status === 1) {
-                this.current = Student;
-            } else if (Store.status === 2) {
-                this.current = Teacher;
-            } else if (Store.status === 3) {
-                this.current = Manager;
-            } else {
-                this.current = Login;
-            }
+        components: {
+            Login
         }
     }
 </script>
@@ -36,7 +17,7 @@
             width: 100%;
         }
         .container {
-            width: 70%;
+            width: 100%;
             margin: auto;
             background-color: #fafafa;
         }

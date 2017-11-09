@@ -3,9 +3,6 @@
         <el-header class="title">学生综合素质评价</el-header>
         <el-main>
             <el-card class="login_box">
-                <div slot="header" class="clearfix">
-                    <span>ID: {{$store.state.user}}</span>
-                </div>
                 <el-form label-width="100px">
                     <el-form-item label="用户名">
                         <el-input placeholder="请输入教委统一认证ID号" v-model="username"></el-input>
@@ -26,46 +23,44 @@
     </el-container>
 </template>
 <script>
-    import store from "../../store/store";
-
     export default{
         name: "login",
-        store,
         data: function() {
             return {
-                stUsername: "student",
-                stPassword: "12345678",
-                teUsername: "teacher",
-                tePassword: "12345678",
-                maUsername: "admin",
-                maPassword: "admin",
                 username: "",
                 password: "",
-                checked: false,
-                store,
+                checked: false
             };
         },
         methods: {
             login() {
-                console.log(this.username, this.password, this.checked);
+                /*this.$store.dispatch("doLogin", { 
+                    username: this.username, 
+                    password: this.password
+                });*/
+                this.$router.push({path: "student"});
+                /*
                 if(this.username === this.stUsername && this.password === this.stPassword) {
-                    store.state.user = this.username;
-                    store.state.status = 1;
+                    this.$store.dispatch("doLogin", { 
+                        username: this.username, 
+                        password: this.password
+                    });
                     this.$router.push({path: "/student"});
                     return;
                 }
                 if(this.username === this.teUsername && this.password === this.tePassword) {
-                    store.state.user = this.username;
-                    store.state.status = 2;
+                    this.$store.state.user = this.username;
+                    this.$store.state.status = 2;
                     this.$router.push({path: "/teacher"});
                     return;
                 }
                 if(this.username === this.maUsername && this.password === this.maPassword) {
-                    store.state.user = this.username;
-                    store.state.status = 3;
+                    this.$store.state.user = this.username;
+                    this.$store.state.status = 3;
                     this.$router.push({path: "/manager"});
                     return;
                 }
+                */
             }
         }
     }
