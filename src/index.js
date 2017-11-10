@@ -17,7 +17,7 @@ Vue.config.productionTip = false;
 
 Vue.use(VueRouter);
 Vue.use(ElementUI);
-Vue.use(Store);
+
 // 将axios挂载到Vue的原型链上，在组件的methods中通过 this.$http() 使用
 Vue.prototype.$http = axios;
 
@@ -28,5 +28,6 @@ const router = new VueRouter({
 
 const app = new Vue({
     router,
+    store: Store,
     render: h => h(App),
 }).$mount("#app");

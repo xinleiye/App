@@ -1,14 +1,33 @@
 <template>
     <div>
-        <Login></Login>
+        <component :is="current"></component>
     </div>
 </template>
 <script>
-    import Login from "./component/Login/Login"
+    import Login from "./component/Login/Login";
+    import Student from "./component/Student/Student";
+
     export default {
         name: "app",
         components: {
             Login
+        },
+        data() {
+            return {
+                current: Login
+            }
+        },
+        computed: {
+            changedStatus() {
+                return this.$store.state.status;
+            }
+        },
+        watch: {
+            changedStatus: function(val, oldVal) {
+                if (val === 1) {
+                    this.current = Student;
+                }
+            }
         }
     }
 </script>

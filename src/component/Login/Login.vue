@@ -34,10 +34,10 @@
         },
         methods: {
             login() {
-                /*this.$store.dispatch("doLogin", { 
+                this.$store.dispatch("doLogin", { 
                     username: this.username, 
                     password: this.password
-                });*/
+                });
                 this.$router.push({path: "student"});
                 /*
                 if(this.username === this.stUsername && this.password === this.stPassword) {
