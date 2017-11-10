@@ -38,7 +38,6 @@
                     username: this.username, 
                     password: this.password
                 });
-                this.$router.push({path: "student"});
                 /*
                 if(this.username === this.stUsername && this.password === this.stPassword) {
                     this.$store.dispatch("doLogin", { 

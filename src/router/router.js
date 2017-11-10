@@ -12,33 +12,27 @@ import Manager from "../component/Manager/Manager";
 
 export default [
     {
-        path: "/", 
-        component: App,
-        children: [
-            {
-                path: "/login",
-                component: Login,
-            },
-            {
-                path: "/student",
-                component: Student,
-                meta: { requiresAuth: true }
-            },
-            {
-                path: "/teacher",
-                component: Teacher,
-                meta: { requiresAuth: true }
-            },
-            {
-                path: "/manager",
-                component: Manager,
-                meta: { requiresAuth: true },
-                beforeEnter(to, from, next) {
-                    console.log(to);
-                    console.log(from);
-                    next();
-                }
-            }
-        ]
+        path: "/:id",
+        component: App
+        //redirect: "/login"
+    },
+    {
+        path: "/login",
+        component: Login
+    },
+    {
+        path: "/student",
+        component: Student,
+        meta: { requiresAuth: true }
+    },
+    {
+        path: "/teacher",
+        component: Teacher,
+        meta: { requiresAuth: true }
+    },
+    {
+        path: "/manager",
+        component: Manager,
+        meta: { requiresAuth: true }
     }
 ];
