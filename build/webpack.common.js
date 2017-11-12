@@ -4,13 +4,13 @@ const path = require("path");
 const webpack = require("webpack");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-//const vueLoaderConfig = require("")
+
 const webpackConfig = module.exports = {
     entry: {
         app: "./src/index.js"
     },
     plugins: [
-        new CleanWebpackPlugin(["dist"]),
+        new CleanWebpackPlugin(["dist/*.*"], { root: path.resolve(__dirname, "../server/") } ),
         new HtmlWebpackPlugin({
             title: "App",
             filename: "index.html",
@@ -22,7 +22,7 @@ const webpackConfig = module.exports = {
     ],
     output: {
         filename: "[name].bundle.js",
-        path: path.resolve(__dirname, "..", "dist")
+        path: path.resolve(__dirname, "../server/dist")
     },
     resolve: {
         extensions: [".js", ".vue"],

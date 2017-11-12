@@ -1,34 +1,47 @@
-const express = require("express");
+const fs = require("fs");
 const webpack = require("webpack");
-const webpackDevMiddleware = require("webpack-dev-middleware");
-
-// 加入express的路由Router
-const router = express.Router();
-const indexRoute = router.get("/", (req, res) => {
-    res.status(200);
-})
-// 配置服务端，配合vue的history路由模式
-const history = require("connect-history-api-fallback");
-
-const app = express();
+//const webpackDevMiddleware = require("webpack-dev-middleware");
 
 const config = require("./build/webpack.dev.js");
 const compiler = webpack(config);
-app.use(webpackDevMiddleware(compiler, {
-    publishPath: config.output.publicPath
-}));
-
-
-app.use(history({
-    rewrites: [
-        { from: /^\/abc$/, to: "/" }
-    ]
-}));
-
-app.use("/", express.static(__dirname + "/dist"));
-
-app.get("/", indexRoute);
-
-app.listen(3000, function() {
-    console.log("Example app listening on port 3000!\n");
+/*
+webpackDevMiddleware(compiler, {
+    watchOptions: {
+        aggregateTimeout: 3000
+    },
+    publicPath: config.output.path
 });
+
+compiler.run(
+    function (err, stats) {
+        //console.log(err);
+        //console.log(stats);
+});
+*/
+/*
+const distPath = config.output.path;
+
+fs.readdir("./dist", function (err, files) {
+    if (err) {
+
+    } else {
+        files.forEach(function (file, index) {
+            var tmpPath = distPath + "\\" + file;
+            fs.unlinkSync(tmpPath);
+        });
+    }
+})
+*/
+console.log("Start build");
+const watcher = compiler.watch(
+    {
+        aggregateTimeout: 3000
+    },
+    function (err, stats) {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log("Compile success!");
+        }
+    }
+);

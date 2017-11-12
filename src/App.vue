@@ -1,8 +1,8 @@
 <template>
     <div>
-        <!--component :is="current"></component-->
-        <router-link :to="{path: '/', query: {id:current}}"></router-link>
-        <router-view></router-view>
+        <component :is="current"></component>
+        <!--router-link :to="{path: '/', query: {id:current}}"></router-link>
+        <router-view></router-view-->
     </div>
 </template>
 <script>
