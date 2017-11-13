@@ -1,4 +1,4 @@
-<template>
+ï»¿<template>
     <div>
         <el-container>
             <el-header class="title">Header
@@ -9,15 +9,15 @@
                     <el-menu default-active="2" class="el-menu-vertical-demo">
                         <el-menu-item index="1">
                             <i class="el-icon-menu"></i>
-                            <span slot="title">µ¼º½Ò»</span>
+                            <span slot="title">å¯¼èˆªä¸€</span>
                         </el-menu-item>
                         <el-menu-item index="2">
                             <i class="el-icon-menu"></i>
-                            <span slot="title">µ¼º½¶þ</span>
+                            <span slot="title">å¯¼èˆªäºŒ</span>
                         </el-menu-item>
                         <el-menu-item index="3">
                             <i class="el-icon-setting"></i>
-                            <span slot="title">µ¼º½Èý</span>
+                            <span slot="title">å¯¼èˆªä¸‰</span>
                         </el-menu-item>
                     </el-menu>
                 </el-aside>
