@@ -39,4 +39,9 @@ apiRouter.post("/user/login", function(req, res) {
     });
 });
 
+apiRouter.post("/user/logout", function(req, res) {
+    responseData.code = 1;
+    res.json(responseData);
+});
+
 module.exports = apiRouter;

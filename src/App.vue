@@ -28,25 +28,20 @@
         },
         watch: {
             changedStatus: function(val, oldVal) {
-                /*if (val === 1) {
-                    this.current = Student;
-                    console.log("App vue");
-                    //this.$router.push({path: "student"});
-                }*/
                 if (this.$store.state.status === 1) {
                     this.current = Student;
                 } else if (this.$store.state.status === 2) {
                     this.current = Teacher;
                 } else if (this.$store.state.status === 3) {
                     this.current = Manager;
-                } else if (this.$store.state.status) {
+                } else {
                     this.current = Login;
                 }
             }
         }
     }
 </script>
-    <style rel="stylesheet">
+<style rel="stylesheet">
         body {
             width: 100%;
         }
