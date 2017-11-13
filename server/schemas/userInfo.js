@@ -7,9 +7,10 @@ module.exports = new userInfo.Schema({
     },
     password: {
         type: String,
-        default: "1234"
+        default: "admin"
     },
     id: {
         type: Number,
         default: 1
-});
+    }
+})

@@ -1,27 +1,40 @@
 
 const express = require("express");
 const mongoDB = require("mongoose");
+const bodyParser = require("body-parser");
 
 // 加入express的路由Router
 const router = express.Router();
+/*
 const indexRoute = router.get("../", (req, res) => {
     res.status(200);
 });
-
-// 配置服务端，配合vue的history路由模式
-const history = require("connect-history-api-fallback");
-
+*/
 const app = express();
+
+/**
+ * 设置静态资源的路径，打开浏览器时，页面需要的js、css、html等文件保存目录
+ */
+app.use("/", express.static(__dirname + "/dist"));
+
+/*
+//配置服务端，配合vue的history路由模式
+const history = require("connect-history-api-fallback");
 
 app.use(history({
     rewrites: [
         { from: /^\/abc$/, to: "/" }
     ]
 }));
+*/
 
-app.use("/", express.static(__dirname + "/dist"));
+/**
+ * 配置body-parse，用于解析post请求中的消息体
+ */
+app.use(bodyParser.json());
 
-app.get("/", indexRoute);
+app.use("/api", require("./api/api"));
+//app.get("/", indexRoute);
 
 mongoDB.connect("mongodb://localhost:28017/app", { useMongoClient: true }, function (err) {
     if (err) {

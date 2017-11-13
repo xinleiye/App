@@ -34,32 +34,15 @@
         },
         methods: {
             login() {
-                this.$store.dispatch("doLogin", { 
+                const _this = this;
+                _this.$http.post("/api/user/login", {
                     username: this.username, 
                     password: this.password
-                });
-                /*
-                if(this.username === this.stUsername && this.password === this.stPassword) {
-                    this.$store.dispatch("doLogin", { 
-                        username: this.username, 
-                        password: this.password
-                    });
-                    this.$router.push({path: "/student"});
-                    return;
-                }
-                if(this.username === this.teUsername && this.password === this.tePassword) {
-                    this.$store.state.user = this.username;
-                    this.$store.state.status = 2;
-                    this.$router.push({path: "/teacher"});
-                    return;
-                }
-                if(this.username === this.maUsername && this.password === this.maPassword) {
-                    this.$store.state.user = this.username;
-                    this.$store.state.status = 3;
-                    this.$router.push({path: "/manager"});
-                    return;
-                }
-                */
+                }).then(function(res) {
+                    if (res.data.code) {
+                        _this.$store.dispatch("doLogin", res.data);
+                    }
+                })
             }
         }
     }
