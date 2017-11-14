@@ -1,8 +1,7 @@
 <template>
     <div>
-        <component :is="current"></component>
-        <!--router-link :to="{path: '/', query: {id:current}}"></router-link>
-        <router-view></router-view-->
+        <!--component :is="current"></component-->
+        <router-view></router-view>
     </div>
 </template>
 <script>
@@ -14,7 +13,8 @@
     export default {
         name: "app",
         components: {
-            Login
+            Login,
+            Student
         },
         data() {
             return {
@@ -29,7 +29,7 @@
         watch: {
             changedStatus: function(val, oldVal) {
                 if (this.$store.state.status === 1) {
-                    this.current = Student;
+                    this.$router.push({path: "student"});
                 } else if (this.$store.state.status === 2) {
                     this.current = Teacher;
                 } else if (this.$store.state.status === 3) {
@@ -43,6 +43,8 @@
 </script>
 <style rel="stylesheet">
         body {
+            margin: 0px;
+            padding: 0px;
             width: 100%;
         }
         .container {

@@ -7,10 +7,10 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 const webpackConfig = module.exports = {
     entry: {
-        app: "./src/index.js"
+        app: "./src/main.js"
     },
     plugins: [
-        new CleanWebpackPlugin(["dist/*.*"], { root: path.resolve(__dirname, "../server/") } ),
+        new CleanWebpackPlugin(["*.*"], { root: path.resolve(__dirname, "../dist") } ),
         new HtmlWebpackPlugin({
             title: "App",
             filename: "index.html",
@@ -22,7 +22,7 @@ const webpackConfig = module.exports = {
     ],
     output: {
         filename: "[name].bundle.js",
-        path: path.resolve(__dirname, "../server/dist")
+        path: path.resolve(__dirname, "../dist")
     },
     resolve: {
         extensions: [".js", ".vue"],

@@ -1,7 +1,6 @@
 "use strict"
 
 // 引入自己的组件库类
-import App from "../App";
 import Store from "../store/store";
 import Login from "../component/Login/Login";
 import Student from "../component/Student/Student";
@@ -9,13 +8,12 @@ import Teacher from "../component/Teacher/Teacher";
 import Manager from "../component/Manager/Manager";
 
 
-
 export default [
     {
-        path: "/:id",
-        component: App
-        //redirect: "/login"
+        path: "/",
+        redirect: "/login"
     },
+
     {
         path: "/login",
         component: Login
@@ -23,7 +21,7 @@ export default [
     {
         path: "/student",
         component: Student,
-        meta: { requiresAuth: true }
+        //meta: { requiresAuth: true }
     },
     {
         path: "/teacher",
@@ -34,5 +32,9 @@ export default [
         path: "/manager",
         component: Manager,
         meta: { requiresAuth: true }
+    },
+    {
+        path: "*",
+        components: { login: Student }
     }
 ];
