@@ -22,12 +22,18 @@ const mutations = {
         state.userName = data.username;
         state.userId = data.id;
         state.status = data.id;
+    },
+    doLogout(state) {
+        state.status = 0;
     }
 };
 
 const actions = {
     doLogin(content, data) {
         content.commit("doLogin", data);
+    },
+    doLogout(content) {
+        content.commit("doLogout");
     }
 }
 
