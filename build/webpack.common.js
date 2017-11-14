@@ -22,6 +22,8 @@ const webpackConfig = module.exports = {
     ],
     output: {
         filename: "[name].bundle.js",
+        // chunkFilename 定义了非入口bundle文件的名字
+        chunkFilename: "[name].bundle.js",
         path: path.resolve(__dirname, "../dist")
     },
     resolve: {
