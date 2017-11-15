@@ -5,10 +5,11 @@
     </div>
 </template>
 <script>
-    import Login from "./component/Login/Login";
-    import Student from "./component/Student/Student";
-    import Teacher from "./component/Teacher/Teacher";
-    import Manager from "./component/Manager/Manager";
+    import Login from "./views/Login";
+    import Student from "./views/Student";
+    import Teacher from "./views/Teacher";
+    import Manager from "./views/Manager";
+    import {str_student} from "./assets/lang/zh_cn";
 
     export default {
         name: "app",
@@ -31,11 +32,11 @@
                 if (this.$store.state.status === 1) {
                     this.$router.push({path: "student"});
                 } else if (this.$store.state.status === 2) {
-                    this.current = Teacher;
+                    this.$router.push({path: "teacher"});
                 } else if (this.$store.state.status === 3) {
-                    this.current = Manager;
+                    this.$router.push({path: "manager"});
                 } else {
-                    this.current = Login;
+                    this.$router.push({path: "/"});
                 }
             }
         }
@@ -53,7 +54,7 @@
             background-color: #fafafa;
         }
         .title {
-            background-color: #b3c0d1;
+            background-image: url("./assets/image/st_top_bj.png");
             font-size: 30px;
             text-align: center;
             line-height: 60px;

@@ -2,18 +2,16 @@
 
 // 引入自己的组件库类
 import Store from "../store/store";
-import Login from "../component/Login/Login";
-import Student from "../component/Student/Student";
-import Teacher from "../component/Teacher/Teacher";
-import Manager from "../component/Manager/Manager";
-
+import Login from "../views/Login";
+import Student from "../views/Student";
+import Teacher from "../views/Teacher";
+import Manager from "../views/Manager";
 
 export default [
     {
         path: "/",
         redirect: "/login"
     },
-
     {
         path: "/login",
         component: Login
