@@ -19,7 +19,10 @@ Vue.use(VueRouter);
 Vue.use(ElementUI);
 
 // 将axios挂载到Vue的原型链上，在组件的methods中通过 this.$http() 使用
-Vue.prototype.$http = axios;
+var axiosInstance = axios.create({
+    withCredentails: true
+})
+Vue.prototype.$http = axiosInstance;
 
 const router = new VueRouter({
     routes,

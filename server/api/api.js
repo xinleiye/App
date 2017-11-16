@@ -44,4 +44,21 @@ apiRouter.post("/user/logout", function(req, res) {
     res.json(responseData);
 });
 
+var tmp = {
+    "data": {
+        "userLogin": {
+            "loginAccount": "admin",
+            "loginKey": "admin_be38e06191de4f58b988a7b4fb9ac3de",
+            "userId": "1",
+            "userName": "gaoqiang"
+        }
+    },
+    "resultCode": "0000",
+    "resultMsg": "³É¹¦"
+};
+
+apiRouter.get("/mem/login", function(req, res) {
+    res.json(tmp);
+})
+
 module.exports = apiRouter;

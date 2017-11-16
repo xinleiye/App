@@ -8,7 +8,8 @@ Vue.use(Vuex);
 const state = {
     userName: "",
     userId: "",
-    status: 0
+    status: 0,
+    testData: {}
 };
 
 const getters = {
@@ -25,6 +26,9 @@ const mutations = {
     },
     doLogout(state) {
         state.status = 0;
+    },
+    setTestData(state, data) {
+        state.testData = data;
     }
 };
 
@@ -34,6 +38,9 @@ const actions = {
     },
     doLogout(content) {
         content.commit("doLogout");
+    },
+    setTestData(content, data) {
+        content.commit("setTestData", data);
     }
 }
 

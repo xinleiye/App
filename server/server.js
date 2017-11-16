@@ -32,6 +32,7 @@ app.use("/", express.static(__dirname + "/../dist"));
 app.use(bodyParser.json());
 
 app.use("/api", require("./api/api"));
+app.use("/biz-ws-deploy/service", require("./api/api"));
 //app.get("/", indexRoute);
 
 mongoDB.connect("mongodb://localhost:28017/app", { useMongoClient: true }, function (err) {
