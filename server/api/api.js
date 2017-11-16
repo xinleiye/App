@@ -54,7 +54,7 @@ var tmp = {
         }
     },
     "resultCode": "0000",
-    "resultMsg": "³É¹¦"
+    "resultMsg": "æˆåŠŸ"
 };
 
 apiRouter.get("/mem/login", function(req, res) {
