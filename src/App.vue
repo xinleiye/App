@@ -2,11 +2,9 @@
     <div>
         <!--component :is="current"></component-->
         <div>
-        <!--el-button v-on:click="getTestData" type="primary" class="test float2l">获取测试数据</el-button-->
-        <a href="javascript:void(0);" class="test a_btn" v-on:click="getTestData()">
-        </a>
-        <el-button v-on:click="destroyTestData" type="primary" class="test float2l">隐藏测试数据</el-button>
-        <testTable v-if="isShow" v-bind:data="testData" class="float2l"></testTable>
+            <el-button v-on:click="getTestData" type="primary" class="test float2l">{{str_app.str_getdata}}</el-button>
+            <el-button v-on:click="destroyTestData" type="primary" class="test float2l">{{str_app.str_hidedata}}</el-button>
+            <testTable v-if="isShow" v-bind:data="testData" class="float2l"></testTable>
         </div>
         <router-view></router-view>
     </div>
@@ -16,7 +14,6 @@
     import Student from "./views/Student";
     import Teacher from "./views/Teacher";
     import Manager from "./views/Manager";
-    import {str_student} from "./assets/lang/zh_cn";
 
     import testTable from "./component/test";
 
@@ -28,6 +25,7 @@
         data() {
             return {
                 isShow: false,
+                str_app: this.$store.state.str_app,
                 testData: {}
             }
         },
@@ -58,30 +56,11 @@
         },
         methods: {
             getTestData(){
-                let _this = this;
-                var callback = function(data) {
-                        console.log(data);
-                }
-                function getJSONP(url, cb) {
-                
-                    var head = document.getElementsByTagName("head")[0];
-                    var script = document.createElement("script");
-                    script.type = 'text/javascript';
-                    script.src = url;
-                    script.onload = script.onreadystatechange = function() {
-                        if((!this.readyState || this.readyState === "loaded" || this.readyState === "complete")){
-                            console.log(this);
-                            cb && cb();  
-                            // Handle memory leak in IE  
-                            script.onload = script.onreadystatechange = null;//人工回收内存  
-                            if ( head && script.parentNode ) {  
-                                head.removeChild( script );  
-                            }  
-                        }
-                    };
-                    head.insertBefore(script, head.firstChild)
-                }
-                getJSONP("https://api.douban.com/v2/book/1220562?callback=callback", callback);
+                let _this = this
+                this.$jsonp("http://172.16.16.137:8080/biz-ws-deploy/service/mem/login", { account: "admin", password: 111111})
+                .then(json => {
+                    _this.$store.dispatch("setTestData", json);
+                });
                 /*
                 _this.$http.get("biz-ws-deploy/service/mem/login", {params: {
                     account: "admin", 
@@ -124,28 +103,6 @@
         .test {
             width: 200px;
             height: 200px;
-        }
-        .a_btn {
-            display: block;
-            color: #fff;
-            background-color: #409EFF;
-            border-color: #409EFF;
-            display: inline-block;
-            line-height: 1;
-            white-space: nowrap;
-            cursor: pointer;
-            background: #fff;
-            border: 1px solid #d8dce5;
-            color: #5a5e66;
-            -webkit-appearance: none;
-            text-align: center;
-            box-sizing: border-box;
-            outline: 0;
-            margin: 0;
-            -webkit-transition: .1s;
-            transition: .1s;
-            padding: 12px 20px;
-            border-radius: 4px;
         }
         .float2l{
             float: left;

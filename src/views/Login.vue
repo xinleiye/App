@@ -3,17 +3,17 @@
         <el-main class="main">
             <el-card class="login_box">
                 <el-form label-width="100px">
-                    <el-form-item label="用户名">
-                        <el-input placeholder="请输入教委统一认证ID号" v-model="username"></el-input>
+                    <el-form-item v-bind:label="str_login.str_username">
+                        <el-input v-bind:placeholder="str_login.str_authId" v-model="username"></el-input>
                     </el-form-item>
-                    <el-form-item label="密码">
-                        <el-input type="password" placeholder="请输入统一认证ID的密码" v-on:keyup.enter="login" v-model="password"></el-input>
-                    </el-form-item>
-                    <el-form-item>
-                        <el-checkbox v-model="checked">下次自动登录</el-checkbox>
+                    <el-form-item v-bind:label="str_login.str_password">
+                        <el-input type="password" v-bind:placeholder="str_login.str_authpassword" v-on:keyup.enter="login" v-model="password"></el-input>
                     </el-form-item>
                     <el-form-item>
-                        <el-button v-on:click="login" type="primary" class="login_btn">登陆</el-button>
+                        <el-checkbox v-model="checked">{{str_login.str_username}}</el-checkbox>
+                    </el-form-item>
+                    <el-form-item>
+                        <el-button v-on:click="login" type="primary" class="login_btn">{{str_login.str_login}}</el-button>
                     </el-form-item>
                 </el-form>
             </el-card>
@@ -25,6 +25,7 @@
         name: "login",
         data: function() {
             return {
+                str_login: this.$store.state.login.str_login,
                 username: "",
                 password: "",
                 checked: false

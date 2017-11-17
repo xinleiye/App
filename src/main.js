@@ -2,6 +2,7 @@
 
 import Vue from "vue";
 import VueRouter from "vue-router";
+import Jsonp from "vue-jsonp";
 import App from "./App";
 import routes from "./router/router";
 import Store from "./store/store";
@@ -15,6 +16,7 @@ import "element-ui/lib/index.js"
 
 Vue.config.productionTip = false;
 
+Vue.use(Jsonp);
 Vue.use(VueRouter);
 Vue.use(ElementUI);
 
