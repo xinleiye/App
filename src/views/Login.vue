@@ -41,6 +41,8 @@
                     if (res.data.code) {
                         _this.$store.dispatch("doLogin", res.data);
                     }
+                }).catch(function() {
+                    console.log('Login error')
                 })
             }
         }

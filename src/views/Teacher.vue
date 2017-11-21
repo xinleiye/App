@@ -24,10 +24,34 @@
                 <el-main class="main">Main</el-main>
             </el-container>
         </el-container>
+        <el-button v-on:click="setBtnName" type="primary">{{newCount}}</el-button>
     </div>
 </template>
 <script>
+    import { mapState, mapActions } from 'vuex'
     export default {
-        name: "teacher"
+        name: 'teacher',
+        data() {
+            return {
+                count: 0
+            }
+        },
+        computed: mapState({
+            newCount: function(state) {
+                console.log(state)
+                return state.teacher.kind
+            }
+        }),
+        methods: {
+            changeCount() {
+                this.$store.dispatch('changeCount', this.count++);
+            },
+            logout() {
+
+            },
+            ...mapActions({
+                setBtnName: 'fnInTeacherAction'
+            })
+        }
     }
 </script>

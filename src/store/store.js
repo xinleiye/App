@@ -13,8 +13,12 @@ import { str_app } from "../assets/lang/zh_cn"
 Vue.use(Vuex)
 
 const state = {
+    userName: '',
+    userId: '',
+    status: 0,
     str_app,
-    testData: {}
+    testData: {},
+    count: 0
 }
 
 const getters = {
@@ -27,18 +31,33 @@ const getters = {
 }
 
 const mutations = {
+    doLogin(state, data) {
+        state.userName = data.username
+        state.userId = data.id
+        state.status = data.id
+    },
     setTestData(state, data) {
         state.testData = data
+    },
+    changeCount(state, data) {
+        state.count = data;
     }
 }
-
 const actions = {
+    doLogin(content, data) {
+        console.log('I\'m doLogin in root store')
+        content.commit('doLogin', data)
+    },
     setTestData(content, data) {
         content.commit('setTestData', data)
+    },
+    changeCount(content, data) {
+        console.log(data);
+        content.commit("changeCount", data);
     }
 }
 
-export default new Vuex.Store({
+const store = new Vuex.Store({
     state,
     getters,
     mutations,
@@ -51,3 +70,6 @@ export default new Vuex.Store({
     }
 })
 
+console.log(store)
+
+export default store
